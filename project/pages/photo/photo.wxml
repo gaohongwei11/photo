@@ -1,0 +1,22 @@
+<!--pages/photo/photo.wxml-->
+<view class="wrap">
+  <view class="img-wrap">
+    <image class="photo" bindload="imgLoad" mode="aspectFit" src="{{'data:image/png;base64,' + pic}}"></image>
+    <view class="scan" hidden="{{hidden}}"></view>
+  </view>
+  <view class="btns">
+    <button type="primary" bindtap="addImg"> 添加图片 </button>
+    <button type="primary" bindtap="removebg" hidden="{{!pic}}"> 人像分割 </button>
+  </view>
+  <view hidden="{{saveHidden}}">
+    <radio-group class="radio-group" bindchange="radioChange">
+        <radio class="radio" wx:for-items="{{items}}" wx:key="name" color="{{item.value === '#ffffff' ? '#666666' : item.value}}" value="{{item.value}}" checked="{{item.checked}}">
+            <view class="colors">
+              <text>{{item.name}}</text>
+            </view>
+        </radio>
+    </radio-group>
+    <button type="primary" bindtap="save"> 保存 </button>
+  </view>
+  <canvas class="myCanvas" hidden="{{false}}" canvas-id="myCanvas" style="width: {{w}}px; height: {{h}}px;"/>
+</view>
